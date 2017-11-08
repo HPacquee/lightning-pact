@@ -13,7 +13,7 @@ public class Pizza {
 
     private String name;
 
-    private BigDecimal price;
+    private String price;
 
     private boolean vegetarian;
 
@@ -23,11 +23,11 @@ public class Pizza {
         //empty JPA/JSON constructor
     }
 
-    public Pizza(String name, BigDecimal price, boolean vegetarian, BigDecimal diameter) {
+    public Pizza(String name, String price, boolean vegetarian, BigDecimal diameter) {
 
         this.id = UUID.randomUUID();
         this.name = name;
-        this.price = price;
+        this.price = price.toString();
         this.vegetarian = vegetarian;
         this.diameter = diameter;
     }
@@ -40,7 +40,7 @@ public class Pizza {
         return name;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 

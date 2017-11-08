@@ -34,10 +34,10 @@ class DataLoader {
 	@PostConstruct
 	public void loadSomeData() {
 		LOGGER.info("STARTED LOADING DATA");
-		pizzaRepository.save(new Pizza("Margerita", BigDecimal.TEN, true, BigDecimal.TEN));
-		pizzaRepository.save(new Pizza("Meat lovers", BigDecimal.TEN, false,BigDecimal.TEN));
-		pizzaRepository.save(new Pizza("Hawaii", BigDecimal.TEN, false, BigDecimal.TEN));
-		pizzaRepository.save(new Pizza("Veggie", BigDecimal.TEN, true, BigDecimal.TEN));
+		pizzaRepository.save(new Pizza("Margerita", "10€", true, BigDecimal.TEN));
+		pizzaRepository.save(new Pizza("Meat lovers", "10€", false,BigDecimal.TEN));
+		pizzaRepository.save(new Pizza("Hawaii", "10€", false, BigDecimal.TEN));
+		pizzaRepository.save(new Pizza("Veggie", "10€", true, BigDecimal.TEN));
 		LOGGER.info("DONE LOADING DATA");
 
 
