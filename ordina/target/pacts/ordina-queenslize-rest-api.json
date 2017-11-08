@@ -1,0 +1,107 @@
+{
+    "provider": {
+        "name": "queenslize-rest-api"
+    },
+    "consumer": {
+        "name": "ordina"
+    },
+    "interactions": [
+        {
+            "description": "A request for the full menu",
+            "request": {
+                "method": "GET",
+                "path": "/pizzas"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/hal+json;charset=UTF-8"
+                },
+                "body": {
+                    "_embedded": {
+                        "pizzas": [
+                            {
+                                "diameter": 100,
+                                "price": 100,
+                                "name": "Margerita"
+                            }
+                        ]
+                    }
+                },
+                "matchingRules": {
+                    "header": {
+                        "Content-Type": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "application\\/hal\\+json;charset=UTF-8"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "body": {
+                        "$._embedded.pizzas": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$._embedded.pizzas[*].name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$._embedded.pizzas[*].price": {
+                            "matchers": [
+                                {
+                                    "match": "decimal"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$._embedded.pizzas[*].diameter": {
+                            "matchers": [
+                                {
+                                    "match": "decimal"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                },
+                "generators": {
+                    "body": {
+                        "$._embedded.pizzas[*].price": {
+                            "type": "RandomDecimal",
+                            "digits": 10
+                        },
+                        "$._embedded.pizzas[*].diameter": {
+                            "type": "RandomDecimal",
+                            "digits": 10
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "pizzas are present"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.8"
+        }
+    }
+}

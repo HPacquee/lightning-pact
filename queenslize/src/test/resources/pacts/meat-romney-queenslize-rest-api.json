@@ -1,0 +1,86 @@
+{
+    "provider": {
+        "name": "queenslize-rest-api"
+    },
+    "consumer": {
+        "name": "meat-romney"
+    },
+    "interactions": [
+        {
+            "description": "A request for the full menu",
+            "request": {
+                "method": "GET",
+                "path": "/pizzas"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/hal+json;charset=UTF-8"
+                },
+                "body": {
+                    "_embedded": {
+                        "pizzas": [
+                            {
+                                "name": "Meat Lovers",
+                                "vegetarian": false
+                            }
+                        ]
+                    }
+                },
+                "matchingRules": {
+                    "header": {
+                        "Content-Type": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "application\\/hal\\+json;charset=UTF-8"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "body": {
+                        "$._embedded.pizzas": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$._embedded.pizzas[*].name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$._embedded.pizzas[*].vegetarian": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "pizzas are present"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.8"
+        }
+    }
+}
