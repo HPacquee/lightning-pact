@@ -1,4 +1,4 @@
-package be.ordina.hp.pact.meatromney.pact;
+package be.ordina.hp.pact.annhannah.pact;
 
 import au.com.dius.pact.consumer.Pact;
 import au.com.dius.pact.consumer.PactProviderRuleMk2;
@@ -6,8 +6,8 @@ import au.com.dius.pact.consumer.PactVerification;
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.model.RequestResponsePact;
-import be.ordina.hp.pact.meatromney.application.PizzaController;
-import be.ordina.hp.pact.meatromney.domain.MeatRomneyPizza;
+import be.ordina.hp.pact.annhannah.application.PizzaController;
+import be.ordina.hp.pact.annhannah.domain.MeatRomneyPizza;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Rule;

@@ -1,6 +1,6 @@
-package be.ordina.hp.pact.meatromney.application;
+package be.ordina.hp.pact.annhannah.application;
 
-import be.ordina.hp.pact.meatromney.domain.MeatRomneyPizza;
+import be.ordina.hp.pact.annhannah.domain.MeatRomneyPizza;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpMethod;

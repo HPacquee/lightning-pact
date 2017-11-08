@@ -1,4 +1,4 @@
-package be.ordina.hp.pact.meatromney;
+package be.ordina.hp.pact.annhannah;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,8 +1,12 @@
 package be.ordina.hp.pact.queenslize.domain;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,17 +23,21 @@ public class Pizza {
 
     private BigDecimal diameter;
 
+    @ElementCollection(targetClass=Ingredient.class)
+    private List<Ingredient> ingredients;
+
     Pizza() {
         //empty JPA/JSON constructor
     }
 
-    public Pizza(String name, BigDecimal price, boolean vegetarian, BigDecimal diameter) {
+    public Pizza(String name, BigDecimal price, BigDecimal diameter, Ingredient... ingredients) {
 
         this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
-        this.vegetarian = vegetarian;
         this.diameter = diameter;
+        this.ingredients = Collections.unmodifiableList(Arrays.asList(ingredients));
+        this.vegetarian = !this.ingredients.contains(Ingredient.MEAT);
     }
 
     public UUID getId() {
@@ -50,5 +58,17 @@ public class Pizza {
 
     public BigDecimal getDiameter() {
         return diameter;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public enum Ingredient {
+        CHEESE,
+        TOMATO_SAUCE,
+        MEAT,
+        BELL_PEPPER,
+        PINEAPPLE
     }
 }
