@@ -7,5 +7,3 @@
 * Spongebob : Changes made by Spongebob, breaking the pact provider tests in Queenslize
 
 * Annhannah : Changes made by not-Spongebob, adding functionality for Ann Hannah's change request
-
-* Kotlin : Playground for the demo using Kotlin
